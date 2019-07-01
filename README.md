@@ -2,7 +2,7 @@
 
 # Description
 
-This is a basic project that allows you to play and test the MITM technique of arp-spoofing
+This is a basic project that allows you to play and test the MITM technique: arp-spoofing
 
 # Execution
 

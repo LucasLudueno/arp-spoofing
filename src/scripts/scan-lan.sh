@@ -1,8 +1,13 @@
 #!/bin/bash
 
-echo "Getting Router IP"
+echo "ip route show | awk '/default/ {print $3}'"
 router=`ip route show | awk '/default/ {print $3}'`
-echo $router
+echo "Router LAN IP: $router"
+echo ""
+
+echo "hostname -I | awk '{print $1}'"
+my_ip=`hostname -I | awk '{print $1}'`
+echo "My LAN IP: $my_ip"
 echo ""
 
 echo "Getting LAN IPs"
