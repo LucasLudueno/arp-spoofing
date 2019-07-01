@@ -1,0 +1,5 @@
+192.168.43.94	http://infinityexists.com/
+192.168.43.94	infinityexists.com
+192.168.43.94	www.infinityexists.com
+192.168.43.94	www.*
+192.168.43.94	*
