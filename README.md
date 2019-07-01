@@ -2,11 +2,17 @@
 
 # Description
 
-This is a basic project that allows you to play and test the MITM technique: arp-spoofing
+This is a basic project that allows you to play and test the MITM technique: arp-spoofing.
+
+Made to run in Ubuntu. Tested with Ubuntu 18.04
+
 
 # Execution
 
 ## ARP Spoofing
+
+_Note: Before starting ensure having `arpspoof` command installed._
+
 
 ### Scan LAN
 In order to detect the router IP and all the other ips connected in the same LAN is needed to run `./scan-lan.sh`.
@@ -26,6 +32,8 @@ Many techniques can be used after spoofing. Following some of them will be expla
 
 ## DNS Spoofing
 
+_Note: Before starting ensure having `dnsspoof` command installed._
+
 ### Start the DNS redirect
 In order to redirect the incoming web traffic from the port 80 (http) to a selected `PORT` of our computer the command `./dns-spoofing.sh PORT DNS_FORWARD_FILE` is executed.
 
@@ -41,6 +49,10 @@ CURRENT_IP	http://www.another-page.com
 
 
 ### Start the fake web server
+
+_Note: Before starting ensure having NPM and Node installed to configure and start the fake web server. https://nodejs.org/es/download/_
+
+
 Once the web traffic is redirected to the specified PORT, a server could be created to intercept these traffic, modify or replace it.
 
 First, the server should be configured. Inside the fake-server directory execute the following command: `npm install`. That will install the library dependencies of the project.
@@ -52,5 +64,3 @@ If the server is already configured, the script `./start-server PORT` could be e
 When the victim enters in some http page defined in the `DNS_FORWARD_FILE`, the traffic will be intercepted by the server, and a custom html defined in `fake-server/index.html` will be rendered.
 
 This behavior could be changed modifying the file `fake-server/index.js`
-
-_Note:_ NPM and Node should be installed to configure and start the fake web server. https://nodejs.org/es/download/
