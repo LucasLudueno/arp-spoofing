@@ -11,7 +11,9 @@
     "start:watch": "nodemon index.js"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "express": "4.15.2",
+    "node-fetch": "^2.6.0",
     "nodemon": "~1.14.11"
   },
   "author": "Lucas Ludueño",
