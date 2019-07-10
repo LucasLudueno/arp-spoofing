@@ -21,7 +21,7 @@ This step is not necessary if the router and the victim IP are known.
 
 
 ## Start Spoofing
-`./arp-spoofing.sh VICTIM_IP ROUTER_IP` command will start spoofing the traffic between the victim IP and the router IP. `VICTIM_IP` and `ROUTER_IP` must be replaced by the victim and the router ip respectively.
+`./arp-spoofing.sh VICTIM_IP ROUTER_IP INTERFACE` command will start spoofing the traffic between the victim IP and the router IP. `VICTIM_IP` and `ROUTER_IP` must be replaced by the victim and the router ip respectively. `INTERFACE` field is optional, by default it takes `wlp2s0`.
 
 Notice that it will enable the IP Forwarding mode to let forward all the ipv4 traffic through our computer
 
