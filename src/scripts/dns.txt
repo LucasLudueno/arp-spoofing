@@ -1,8 +1,8 @@
-192.168.0.5	http://infinityexists.com/
-192.168.0.5	infinityexists.com
-192.168.0.5	www.infinityexists.com
-192.168.0.5	http://fi.uba.ar/
-192.168.0.5	fi.uba.ar
-192.168.0.5	www.fi.uba.ar
-192.168.0.5	www.*
-192.168.0.5	*
+192.168.43.94	http://infinityexists.com/
+192.168.43.94	infinityexists.com
+192.168.43.94	www.infinityexists.com
+192.168.43.94	http://fi.uba.ar/
+192.168.43.94	fi.uba.ar
+192.168.43.94	www.fi.uba.ar
+192.168.43.94	www.*
+192.168.43.94	*
